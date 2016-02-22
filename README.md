@@ -42,6 +42,6 @@ with following main parameters:
         title = req.get_param('title')
         image = req.get_param('image')
         # Read image as binary
-        raw = image.read()
+        raw = image.file.read()
         # Retrieve filename
         filename = image.filename
