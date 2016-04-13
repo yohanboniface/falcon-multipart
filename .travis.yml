@@ -1,0 +1,19 @@
+language: python
+python:
+- '2.7'
+- '3.4'
+- '3.5'
+install:
+- pip install .
+script: py.test
+notifications:
+  email: false
+deploy:
+  provider: pypi
+  user: ybon
+  password:
+    secure: IwdfdWzF/38Tv3oLCPsTh1lQY6hHIXowhtFutCZtooqjLdJ52sCUMivSTlOnTpdASW6E464sC2Dq+z9eJHSokuqlmAe8veLHCt38DAgY8AG2KfjIiIvAbNbmQ6jPlebkRBIvHuHTFLBW8XsRA07NaaIs0JWuuVORpJHTax6Pjc5ewXtexUaFVBMqlOL2PgumYStcXalRjs1XATNPpzAMHNgLy69aYDFnvLh7NYOxYf+mvCFSVqBS9IIvvn2wYAGYF7g5MXdIqJlCU+hbehmqspSpYVQC2ybtgVBXqcj3p3PtRu3YpeC1SYBpsxUJ3piJnuYZcCMl5RBEHlD0lKiCHIdlvkb/yZm7v0gAcI4Ty4kOs8InGUjclrVXSZjEXWq/O66SixjRjRGohgKUpZjQJvyt2KzYd3DqyzaTXR22QZ1HD/TXI/tYtoVBp6NPDvPPdtV2EmJGvGxv8kVHf5SeLD5WXQnV4x85ziligAbPG358nWQuwuWsYGC7mNMGxmQTwVn615CtUAU0NUZZ84AsjF/2zvbYdjPXSV/2ycBaLoVq5MmpeCf3ybXEdp8AWpfGSPyn2Ys3Gux5zL+ZhL7nLBK+tGBRFIaI+67Yluqy17jU9RZoTfpshBHEBkvXZPp9Q0JeiiKZKpRdsB1Gskc6ClA+pJuzJTiWHkj3DnWKIhM=
+  on:
+    tags: true
+    distributions: sdist bdist_wheel
+    repo: yohanboniface/falcon-multipart
