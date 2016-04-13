@@ -4,9 +4,7 @@
 
 ## Install
 
-No pypi release yet, so install from git:
-
-    pip install git+https://github.com/yohanboniface/falcon-multipart
+    pip install falcon-multipart
 
 
 ## Usage
