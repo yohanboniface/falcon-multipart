@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/yohanboniface/falcon-multipart.svg?branch=master)](https://travis-ci.org/yohanboniface/falcon-multipart)
+
 # Parse multipart/form-data requests in Falcon
 
 ## Install
