@@ -17,7 +17,10 @@ class MultipartMiddleware(object):
         # This must be done to avoid a bug in cgi.FieldStorage.
         req.env.setdefault('QUERY_STRING', '')
 
-        form = self.parse(stream=req.stream.stream, environ=req.env)
+        if hasattr(req.stream, 'stream'):
+            form = self.parse(stream=req.stream.stream, environ=req.env)
+        else:
+            form = self.parse(stream=req.stream, environ=req.env)
         for key in form:
             field = form[key]
             if not getattr(field, 'filename', False):
