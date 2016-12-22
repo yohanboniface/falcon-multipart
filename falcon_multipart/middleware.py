@@ -17,7 +17,9 @@ class MultipartMiddleware(object):
         # This must be done to avoid a bug in cgi.FieldStorage.
         req.env.setdefault('QUERY_STRING', '')
 
-        form = self.parse(stream=req.stream, environ=req.env)
+        # To avoid all stream consumption problem which occurs in falcon 1.0.0 or above
+        stream = req.stream.stream if hasattr(req.stream, 'stream') else req.stream
+        form = self.parse(stream=stream, environ=req.env)
         for key in form:
             field = form[key]
             if not getattr(field, 'filename', False):
