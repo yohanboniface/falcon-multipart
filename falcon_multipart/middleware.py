@@ -23,6 +23,6 @@ class MultipartMiddleware(object):
         for key in form:
             field = form[key]
             if not getattr(field, 'filename', False):
-                field = form.getlist(key)
+                field = form.getvalue(key)
             # TODO: put files in req.files instead when #493 get merged.
             req._params[key] = field
