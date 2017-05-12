@@ -1,5 +1,7 @@
 from io import BytesIO
 
+import falcon
+
 from .parser import Parser
 
 
@@ -45,7 +47,10 @@ class MultipartMiddleware(object):
         # or above.
         stream = (req.stream.stream if hasattr(req.stream, 'stream') else
                   req.stream)
-        form = self.parse(stream=stream, environ=req.env)
+        try:
+            form = self.parse(stream=stream, environ=req.env)
+        except ValueError as e:  # Invalid boundary?
+            raise falcon.HTTPBadRequest('Error parsing file', str(e))
 
         for key in form:
             # TODO: put files in req.files instead when #418 get merged.
