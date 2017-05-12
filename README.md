@@ -2,7 +2,7 @@
 
 # Parse multipart/form-data requests in Falcon
 
-## Install
+## Install
 
     pip install falcon-multipart
 
@@ -19,7 +19,7 @@ This will parse any `multipart/form-data` incoming request, and put the keys
 in `req._params`, including files, so you get the field as other params.
 
 
-## Dealing with files
+## Dealing with files
 
 Files will be available as [`cgi.FieldStorage`](https://docs.python.org/3/library/cgi.html),
 with following main parameters:
@@ -32,16 +32,16 @@ with following main parameters:
 - `disposition`: content-disposition, or None if not specified
 
 
-## Example
+## Example
 
-    # Say you have a form with those fields:
+    # Say you have a form with those fields:
     # - title => a string
     # - image => an image file
 
     def on_post(req, resp, **kwargs):
         title = req.get_param('title')
         image = req.get_param('image')
-        # Read image as binary
+        # Read image as binary
         raw = image.file.read()
         # Retrieve filename
         filename = image.filename
