@@ -25,7 +25,7 @@ setup(
     url=falcon_multipart.__homepage__,
     author=falcon_multipart.__author__,
     author_email=falcon_multipart.__contact__,
-    license='WTFPL',
+    license='MIT',
 
     # See https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
