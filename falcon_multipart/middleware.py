@@ -55,3 +55,24 @@ class MultipartMiddleware(object):
         for key in form:
             # TODO: put files in req.files instead when #418 get merged.
             req._params[key] = self.parse_field(form[key])
+
+    async def process_request_async(self, req, resp, **kwargs):
+
+        if 'multipart/form-data' not in (req.content_type or ''):
+            return
+
+        # This must be done to avoid a bug in cgi.FieldStorage.
+        req.env.setdefault('QUERY_STRING', '')
+
+        # To avoid all stream consumption problem which occurs in falcon 1.0.0
+        # or above.
+        stream = (req.stream.stream if hasattr(req.stream, 'stream') else
+                  req.stream)
+        try:
+            form = self.parse(stream=stream, environ=req.env)
+        except ValueError as e:  # Invalid boundary?
+            raise falcon.HTTPBadRequest('Error parsing file', str(e))
+
+        for key in form:
+            # TODO: put files in req.files instead when #418 get merged.
+            req._params[key] = self.parse_field(form[key])
